@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "jekyll/quicklatex"
+require 'jekyll/quicklatex'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
