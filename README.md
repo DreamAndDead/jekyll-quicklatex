@@ -67,7 +67,7 @@ At the same time, it'll write new file named `latex.cache` to avoid recompile
 the snippet again. If you want to recompile all the snippets, delete
 `latex.cache` first.
 
-**WARNING** below
+**WARNING BELOW**
 
 The process of fetching picture back is after copy assets into _site
 directory when `jekyll build`. So after first build, pictures are fetched but
@@ -75,7 +75,7 @@ not in _site/. If you build again, everything's fine. That's the way I
 recommend.
 
 In this plugin, I use the stratery that adding a fallback quicklatex
-link for every <img>s. So if local picture is not found, it'll fetch remote
+link for every `<img>` links. If local picture is not found, it'll fetch remote
 picture automatically. **Pay attention**, link in quicklatex has a expire time,
 so don't rely on this stratery.
 
@@ -87,6 +87,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+MIT
 
 [tikz]: http://dreamanddead.github.io/2017/03/25/learn-tikz-by-examples.html
+[quicklatex]: http://quicklatex.com/
