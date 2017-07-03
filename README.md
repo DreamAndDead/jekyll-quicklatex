@@ -63,6 +63,10 @@ This plugin visit [quicklatex][quicklatex] to compile code snippet into
 picture, then fetch the picture back into `./assets/latex` directory, and
 render a `<img>` on your page.
 
+At the same time, it'll write new file named `latex.cache` to avoid recompile
+the snippet again. If you want to recompile all the snippets, delete
+`latex.cache` first.
+
 **WARNING** below
 
 The process of fetching picture back is after copy assets into _site
