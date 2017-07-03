@@ -1,4 +1,3 @@
-require 'jekyll'
 require 'net/http'
 require 'fileutils'
 require 'digest'

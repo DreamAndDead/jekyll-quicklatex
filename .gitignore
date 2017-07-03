@@ -15,3 +15,6 @@ _site/
 .jekyll-metadata
 
 *.gem
+
+/assets/
+latex.cache
