@@ -1,8 +1,7 @@
-# Jekyll::Quicklatex
+# Jekyll-Quicklatex
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/quicklatex`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Jekyll-Quicklatex is a converter plugin for Jekyll. It convert latex code
+snippet to picture embeded in your page.
 
 ## Installation
 
@@ -22,22 +21,68 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+for example, we use package tikz to describe a picture
+
+```
+{% latex %}
+{% highlight latex %}
+\usepackage{tikz}
+\begin{tikzpicture}[scale=3]
+  \tikzset{Karl's grid/.style ={help lines,color=#1!50},
+    Karl's grid/.default=blue}
+
+  \clip (-0.1,-0.2) rectangle (1.1,1.51);
+
+  \draw[step=.5cm,Karl's grid] (-1.4,-1.4) grid (1.4,1.4);
+  \draw[->] (-1.5,0) -- (1.5,0);
+  \draw[->] (0, -1.5) -- (0,1.5);
+  \draw (0,0) circle [radius=1cm];
+  \shadedraw[left color=gray, right color=green, draw=green!50!black] (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+
+  \draw[red,very thick] (30:1cm) -- +(0,-0.5);
+  \draw[blue,very thick] (30:1cm) ++(0,-0.5) -- (0,0);
+  \draw[orange,very thick] (1,0) -- (1, {tan(30)});
+
+  \foreach \x in {-1cm,-0.5cm,1cm}
+  \draw (\x,-1pt) -- (\x,1pt);
+  \foreach \y in {-1cm,-0.5cm,0.5cm,1cm}
+  \draw (-1pt,\y) -- (1pt,\y);
+\end{tikzpicture}
+{% endhighlight %}
+{% endlatex %}
+```
+
+it'll render the img and show its source below!
+
+[see result here: learn tikz by examples][tikz]
+
+## Strategy
+
+This plugin visit [quicklatex][quicklatex] to compile code snippet into
+picture, then fetch the picture back into `./assets/latex` directory, and
+render a `<img>` on your page.
+
+**WARNING** below
+
+The process of fetching picture back is after copy assets into _site
+directory when `jekyll build`. So after first build, pictures are fetched but
+not in _site/. If you build again, everything's fine. That's the way I
+recommend.
+
+In this plugin, I use the stratery that adding a fallback quicklatex
+link for every <img>s. So if local picture is not found, it'll fetch remote
+picture automatically. **Pay attention**, link in quicklatex has a expire time,
+so don't rely on this stratery.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bundle install` to install dependencies. Then, run `rake` to run the tests.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jekyll-quicklatex. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-## Code of Conduct
-
-Everyone interacting in the Jekyll::Quicklatex project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/jekyll-quicklatex/blob/master/CODE_OF_CONDUCT.md).
+[tikz]: http://dreamanddead.github.io/2017/03/25/learn-tikz-by-examples.html

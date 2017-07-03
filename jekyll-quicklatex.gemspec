@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["DreamAndDead"]
   spec.email         = ["aquairain@gmail.com"]
 
-  spec.summary       = %q{a jekyll converter plugin for latex tikz.}
-  spec.description   = %q{jekyll-quicklatex, a jekyll converter plugin for latex tikz.}
+  spec.summary       = %q{a jekyll converter plugin for latex.}
+  spec.description   = %q{Jekyll-Quicklatex is a converter plugin for Jekyll. It convert latex code
+snippet to picture embeded in your page.}
   spec.homepage      = "https://github.com/DreamAndDead/jekyll-quicklatex"
   spec.license       = "MIT"
 
