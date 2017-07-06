@@ -126,7 +126,7 @@ module Jekyll
             FileUtils.mkdir_p dir
           end
 
-          @cache.cache(snippet, save_path)
+          @cache.cache(snippet, pic_uri.path)
 
           Net::HTTP.start(pic_uri.host) do |http|
             # http get
